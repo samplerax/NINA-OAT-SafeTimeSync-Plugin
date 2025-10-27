@@ -1,0 +1,129 @@
+﻿<ResourceDictionary x:Class="Samplerax.NINA.OatSafeTimeSync.OatSafeTimeSyncTestCategory.PluginItemTemplate"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Samplerax.NINA.OatSafeTimeSync.OatSafeTimeSyncTestCategory"
+                    xmlns:mini="clr-namespace:NINA.View.Sequencer.MiniSequencer;assembly=NINA.Sequencer"
+                    xmlns:nina="clr-namespace:NINA.View.Sequencer;assembly=NINA.Sequencer"
+                    xmlns:util="clr-namespace:NINA.Core.Utility;assembly=NINA.Core">
+
+    <!--  OAT Safe Time Meridian Flip Trigger  -->
+    <DataTemplate DataType="{x:Type local:OatSafeTimeSyncTrigger}">
+        <nina:SequenceBlockView>
+            <nina:SequenceBlockView.SequenceItemProgressContent>
+                <StackPanel
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    Visibility="{Binding EarliestFlipTime, Converter={StaticResource DateTimeZeroToVisibilityCollapsedConverter}}">
+                    <TextBlock VerticalAlignment="Center" Text="Flip Time: " />
+                    <TextBlock
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        Text="{Binding EarliestFlipTime, StringFormat='{}{0:HH:mm:ss}'}" />
+                </StackPanel>
+            </nina:SequenceBlockView.SequenceItemProgressContent>
+            
+            <nina:SequenceBlockView.SequenceItemContent>
+                <StackPanel Orientation="Vertical">
+                    <!-- Expander button positioned on the left where threshold was -->
+                    <DockPanel Margin="0,0,0,6">
+                        <Expander Header="⋯" DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Center" IsExpanded="False">
+                            <Border BorderThickness="1" Padding="8" MaxWidth="420" HorizontalAlignment="Left">
+                                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                                    <Grid HorizontalAlignment="Left">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <!-- Safe Time Threshold -->
+                                        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,3,5,3">Safe Time Threshold:</TextBlock>
+                                        <TextBox Grid.Row="0" Grid.Column="1" 
+                                                MinWidth="60" Margin="0,3,5,3" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                Text="{Binding SafeTimeThresholdMinutes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,3">min</TextBlock>
+
+                                        <!-- Polling Interval -->
+                                        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,3,5,3">Polling Interval:</TextBlock>
+                                        <TextBox Grid.Row="1" Grid.Column="1" 
+                                                MinWidth="60" Margin="0,3,5,3" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                Text="{Binding PollingIntervalSeconds, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,3">sec</TextBlock>
+
+                                        <!-- Pause Guiding -->
+                                        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,3,5,3">Pause Guiding During Flip:</TextBlock>
+                                        <CheckBox Grid.Row="2" Grid.Column="1" 
+                                                 Margin="0,3,5,3" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                 IsChecked="{Binding PauseGuidingDuringFlip, Mode=TwoWay}" />
+
+                                        <!-- Force Calibration After Flip -->
+                                        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,3,5,3">Force Calibration After Flip:</TextBlock>
+                                        <CheckBox Grid.Row="3" Grid.Column="1" 
+                                                 Margin="0,3,5,3" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                 IsChecked="{Binding ForceCalibrationAfterFlip, Mode=TwoWay}" />
+
+                                        <!-- Auto Focus After Flip -->
+                                        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,3,5,3">Auto Focus After Flip:</TextBlock>
+                                        <CheckBox Grid.Row="4" Grid.Column="1" 
+                                                 Margin="0,3,5,3" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                 IsChecked="{Binding AutofocusAfterFlip, Mode=TwoWay}" />
+
+                                        <!-- Recenter After Flip -->
+                                        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,3,5,3">Recenter After Flip:</TextBlock>
+                                        <CheckBox Grid.Row="5" Grid.Column="1" 
+                                                 Margin="0,3,5,3" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                 IsChecked="{Binding RecenterAfterFlip, Mode=TwoWay}" />
+
+                                        <!-- Plate Solve Tolerance -->
+                                        <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,3,5,3">Plate Solve Tolerance:</TextBlock>
+                                        <TextBox Grid.Row="6" Grid.Column="1" 
+                                                MinWidth="60" Margin="0,3,5,3" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                Text="{Binding PlatesolveToleranceArcsec, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                IsEnabled="{Binding RecenterAfterFlip}" />
+                                        <TextBlock Grid.Row="6" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,3">arcsec</TextBlock>
+
+                                        <!-- Max Centering Attempts -->
+                                        <TextBlock Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,3,5,3">Max Centering Attempts:</TextBlock>
+                                        <TextBox Grid.Row="7" Grid.Column="1" 
+                                                MinWidth="60" Margin="0,3,5,3" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                Text="{Binding MaxCenteringAttempts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                IsEnabled="{Binding RecenterAfterFlip}" />
+                                    </Grid>
+                                </ScrollViewer>
+                            </Border>
+                        </Expander>
+                    </DockPanel>
+                </StackPanel>
+            </nina:SequenceBlockView.SequenceItemContent>
+        </nina:SequenceBlockView>
+    </DataTemplate>
+
+    <!--  Mini template for trigger - displays in Advanced Sequencer dockable  -->
+    <DataTemplate x:Key="Samplerax.NINA.OatSafeTimeSync.OatSafeTimeSyncTestCategory.OatSafeTimeSyncTrigger_Mini">
+        <mini:MiniTrigger>
+            <mini:MiniTrigger.TriggerProgressContent>
+                <StackPanel
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    Visibility="{Binding EarliestFlipTime, Converter={StaticResource DateTimeZeroToVisibilityCollapsedConverter}}">
+                    <TextBlock VerticalAlignment="Center" Text="Flip Time: " />
+                    <TextBlock
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        Text="{Binding EarliestFlipTime, StringFormat='{}{0:HH:mm:ss}'}" />
+                </StackPanel>
+            </mini:MiniTrigger.TriggerProgressContent>
+        </mini:MiniTrigger>
+    </DataTemplate>
+
+</ResourceDictionary>
