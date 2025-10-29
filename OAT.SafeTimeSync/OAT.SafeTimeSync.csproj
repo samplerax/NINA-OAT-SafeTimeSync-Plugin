@@ -48,6 +48,7 @@
   
   <ItemGroup>
     <Folder Include="OatSafeTimeSyncDockables\" />
+    <Folder Include="OatSafeTimeSyncDrivers\" />
   </ItemGroup>
   
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
