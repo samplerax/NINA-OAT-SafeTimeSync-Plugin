@@ -1,4 +1,4 @@
-﻿# OAT Safe Time Sync
+# OAT Safe Time Sync
 
 
 ````````
