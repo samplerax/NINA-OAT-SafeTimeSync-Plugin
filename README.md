@@ -1,8 +1,3 @@
-# OAT Safe Time Sync
-
-
-````````
-
 # OAT Safe Time Sync Plugin for NINA
 
 This plugin provides automatic meridian flip functionality for OpenAstroTracker (OAT) mounts that use a non-standard DEC axis orientation.
@@ -225,33 +220,3 @@ Check NINA logs for messages prefixed with:
 ## License
 
 This plugin follows the same license as NINA (MPL 2.0).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
